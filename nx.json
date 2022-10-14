@@ -1,0 +1,98 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "ruby-nx-monorepo",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e", "install"]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+    },
+    "test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "rubyDependencies": ["{projectRoot}/Gemfile", "{projectRoot}/Gemfile.lock"],
+    "production": [
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s"
+    ],
+    "sharedGlobals": [],
+    "rubocop": [
+      "{workspaceRoot}/.rubocop.yml",
+      "{workspaceRoot}/.rubocop-default.yml",
+      "{projectRoot}/.rubocop.yml",
+      "{projectRoot}/**/*.rb",
+      "{projectRoot}/**/*.arb",
+      "{projectRoot}/**/*.axlsx",
+      "{projectRoot}/**/*.builder",
+      "{projectRoot}/**/*.fcgi",
+      "{projectRoot}/**/*.gemfile",
+      "{projectRoot}/**/*.gemspec",
+      "{projectRoot}/**/*.god",
+      "{projectRoot}/**/*.jb",
+      "{projectRoot}/**/*.jbuilder",
+      "{projectRoot}/**/*.mspec",
+      "{projectRoot}/**/*.opal",
+      "{projectRoot}/**/*.pluginspec",
+      "{projectRoot}/**/*.podspec",
+      "{projectRoot}/**/*.rabl",
+      "{projectRoot}/**/*.rake",
+      "{projectRoot}/**/*.rbuild",
+      "{projectRoot}/**/*.rbw",
+      "{projectRoot}/**/*.rbx",
+      "{projectRoot}/**/*.ru",
+      "{projectRoot}/**/*.ruby",
+      "{projectRoot}/**/*.spec",
+      "{projectRoot}/**/*.thor",
+      "{projectRoot}/**/*.watchr",
+      "{projectRoot}/**/.irbrc",
+      "{projectRoot}/**/.pryrc",
+      "{projectRoot}/**/.simplecov",
+      "{projectRoot}/**/buildfile",
+      "{projectRoot}/**/Appraisals",
+      "{projectRoot}/**/Berksfile",
+      "{projectRoot}/**/Brewfile",
+      "{projectRoot}/**/Buildfile",
+      "{projectRoot}/**/Capfile",
+      "{projectRoot}/**/Cheffile",
+      "{projectRoot}/**/Dangerfile",
+      "{projectRoot}/**/Deliverfile",
+      "{projectRoot}/**/Fastfile",
+      "{projectRoot}/**/*Fastfile",
+      "{projectRoot}/**/Gemfile",
+      "{projectRoot}/**/Guardfile",
+      "{projectRoot}/**/Jarfile",
+      "{projectRoot}/**/Mavenfile",
+      "{projectRoot}/**/Podfile",
+      "{projectRoot}/**/Puppetfile",
+      "{projectRoot}/**/Rakefile",
+      "{projectRoot}/**/rakefile",
+      "{projectRoot}/**/Snapfile",
+      "{projectRoot}/**/Steepfile",
+      "{projectRoot}/**/Thorfile",
+      "{projectRoot}/**/Vagabondfile",
+      "{projectRoot}/**/Vagrantfile"
+    ]
+  },
+  "plugins": [
+    "@ruby-nx-monorepo/nx-ruby"
+  ]
+}

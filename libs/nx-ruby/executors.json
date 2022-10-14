@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "rubocop": {
+      "implementation": "./src/executors/rubocop/executor",
+      "schema": "./src/executors/rubocop/schema.json",
+      "description": "Rubocop linting for Ruby projects"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "gem-a": "libs/gem-a",
+    "gem-b": "libs/gem-b",
+    "rails-app-a": "apps/rails-app-a",
+    "rails-app-b": "apps/rails-app-b",
+    "nx-ruby": "libs/nx-ruby"
+  }
+}

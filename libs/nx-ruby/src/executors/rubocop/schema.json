@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Rubocop executor",
+  "description": "",
+  "outputCapture": "pipe",
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "string"
+    },
+    "lintFilePatterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "autocorrect": {
+      "type": "boolean",
+      "description": "Autocorrect offenses (only when it's safe). See: https://docs.rubocop.org/rubocop/usage/autocorrect.html"
+    },
+    "cache": {
+      "type": "boolean",
+      "description": "Store and reuse results for faster operation."
+    },
+    "cacheRoot": {
+      "type": "string",
+      "description": "Location to store the cache. By default, the cache is stored in either $XDG_CACHE_HOME/$UID/rubocop_cache if $XDG_CACHE_HOME is set or in $HOME/.cache/rubocop_cache/ if it's not."
+    },
+    "cwd": {
+      "type": "string",
+      "description": "Current working directory of the rubocop command."
+    },
+    "force": {
+      "type": "boolean",
+      "description": "Succeed even if there are linting errors.",
+      "default": false
+    },
+    "args": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Extra arguments to pass to the rubocop command. For the full list of supported commands, see: https://docs.rubocop.org/rubocop/usage/basic_usage.html#command-line-flags"
+    }
+  },
+  "required": ["lintFilePatterns"]
+}
