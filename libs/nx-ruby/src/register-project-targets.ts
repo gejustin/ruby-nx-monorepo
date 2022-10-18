@@ -1,8 +1,14 @@
 import { readFileSync } from 'node:fs';
+import { basename } from 'node:path';
 
 import { TargetConfiguration } from '@nrwl/devkit';
 
 export const projectFilePatterns = ['Gemfile'];
+
+const portMap = {
+  'rails-app-a': 3000,
+  'rails-app-b': 3001
+}
 
 export function registerProjectTargets(
   projectFilePath: string
@@ -11,6 +17,7 @@ export function registerProjectTargets(
   const projectConfig = JSON.parse(
     readFileSync(`${projectRoot}/project.json`, { encoding: 'utf8' })
   );
+  const projectName = basename(projectRoot);
 
   const targets = {
     install: {
@@ -38,7 +45,7 @@ export function registerProjectTargets(
       serve: {
         executor: 'nx:run-commands',
         options: {
-          command: `bundle exec rails s -p 0`,
+          command: `bundle exec rails s -p ${portMap[projectName]}`,
           cwd: projectRoot,
         },
         dependsOn: ["install"]
